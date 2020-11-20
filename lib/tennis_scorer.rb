@@ -1,7 +1,7 @@
 class TennisScorer
+  attr_reader :score
 
-  def test
-    true
+  def initialize
+    @score = [0,0]
   end
-
 end
