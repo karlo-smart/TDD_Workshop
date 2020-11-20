@@ -5,7 +5,7 @@ class IllegalScoreError < StandardError
 end
 
 class TennisScorer
-  SCORES = { 0 => 0, 1 => 15, 2 => 30, 3 => 40 }
+  SCORES = { 0 => "Love", 1 => "Fifteen", 2 => "Thirty", 3 => "Forty" }
 
   attr_accessor :points
 
@@ -20,13 +20,18 @@ class TennisScorer
     points[player] += 1
   end
 
-  def score
+  def display_score
     raise IllegalScoreError unless valid_score?
 
     return "#{leader} wins" if winner?
 
     if points.min < 3
-      points.map { |point| SCORES[point] }
+      score = points.map { |point| SCORES[point] }
+      if score[0] == score[1]
+        "#{score[0]} All"
+      else
+        "#{score[0]} #{score[1]}"
+      end
     elsif points[0] == points[1]
       'Deuce'
     else
