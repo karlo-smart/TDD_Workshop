@@ -1,0 +1,20 @@
+
+TennisScorer
+[31m  calls method (FAILED - 1)[0m
+
+Failures:
+
+  1) TennisScorer calls method
+     [31mFailure/Error: [0mtest = [1;34;4mTennisScorer[0m.new.test[0m
+     [31m[0m
+     [31mNameError:[0m
+     [31m  uninitialized constant TennisScorer[0m
+     [36m# ./spec/tennis_scorer_spec.rb:5:in `block (2 levels) in <top (required)>'[0m
+
+Finished in 0.00253 seconds (files took 0.17331 seconds to load)
+[31m1 example, 1 failure[0m
+
+Failed examples:
+
+[31mrspec ./spec/tennis_scorer_spec.rb:4[0m [36m# TennisScorer calls method[0m
+
