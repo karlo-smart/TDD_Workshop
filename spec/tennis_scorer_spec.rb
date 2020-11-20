@@ -1,9 +1,13 @@
 require '../lib/tennis_scorer'
 
-describe 'TennisScorer' do
-  it 'calls method' do
-    test = TennisScorer.new.test
+describe TennisScorer do
+  let(:tennis_scorer) { TennisScorer.new }
 
-    expect(test).to eq true
+  it 'calls method' do
+    expect(tennis_scorer.test).to eq true
+  end
+  
+  it 'records score' do
+    expect(tennis_scorer.score).to eq [0,0]
   end
 end
