@@ -1,5 +1,5 @@
 class ScoreDisplay
-  SCORES = { 0 => "Love", 1 => "Fifteen", 2 => "Thirty", 3 => "Forty" }
+  SCORES = { 0 => 'Love', 1 => 'Fifteen', 2 => 'Thirty', 3 => 'Forty' }
 
   attr_reader :points
 
