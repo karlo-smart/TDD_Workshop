@@ -3,8 +3,7 @@ require_relative 'game_over_error'
 require_relative 'illegal_score_error'
 
 class TennisScorer
-
-
+  
   attr_accessor :points
 
   def initialize
