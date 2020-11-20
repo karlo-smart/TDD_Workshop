@@ -1,14 +1,17 @@
 class TennisScorer
+  SCORES = { 0 => 0, 1 => 15, 2 => 30, 3 => 40 }
 
-  attr_reader :score
+  attr_accessor :points
 
   def initialize
-    @score = [0,0]
+    @points = [0,0]
   end
 
   def add_point(player)
-    if score[player] == 0
-      score[player] = 15
-    end
+    points[player] += 1
+  end
+
+  def score
+    points.map { |point| SCORES[point] }
   end
 end

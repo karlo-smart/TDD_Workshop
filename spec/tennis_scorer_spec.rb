@@ -17,4 +17,10 @@ describe TennisScorer do
     tennis_scorer.add_point(0)
     expect(tennis_scorer.score).to eq [40,0]
   end
+
+  it 'can detect deuce' do
+    tennis_scorer.points = [3,3]
+
+    expect(tennis_scorer.score).to eq 'Deuce'
+  end
 end
