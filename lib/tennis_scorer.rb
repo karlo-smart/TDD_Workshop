@@ -12,14 +12,22 @@ class TennisScorer
   end
 
   def score
+    return "#{leader} wins" if winner?
+
     if points.min < 3
       points.map { |point| SCORES[point] }
     elsif points[0] == points[1]
       'Deuce'
-    elsif points[0] > points[1]
-      'Advantage Player 1'
     else
-      'Advantage Player 2'
+      "Advantage #{leader}"
     end
+  end
+
+  def winner?
+    points.max >= 4 && points.max - points.min >= 2
+  end
+
+  def leader
+    points[0] > points[1] ? 'Player 1' : 'Player 2'
   end
 end

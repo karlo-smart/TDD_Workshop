@@ -38,4 +38,9 @@ describe TennisScorer do
     tennis_scorer.points = [4,0]
     expect(tennis_scorer.score).to eq 'Player 1 wins'
   end
+
+  it 'if the game has finished, you can not add points' do
+    tennis_scorer.points = [4,0]
+    expect(tennis_scorer.add_point(0)).to raise GameOverError
+  end
 end
