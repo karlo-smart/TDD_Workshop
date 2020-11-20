@@ -12,6 +12,10 @@ class TennisScorer
   end
 
   def score
-    points.map { |point| SCORES[point] }
+    if points[0] >= 3 && points[0] == points[1]
+      'Deuce'
+    else
+      points.map { |point| SCORES[point] }
+    end
   end
 end

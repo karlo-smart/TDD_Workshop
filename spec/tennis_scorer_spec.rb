@@ -22,5 +22,19 @@ describe TennisScorer do
     tennis_scorer.points = [3,3]
 
     expect(tennis_scorer.score).to eq 'Deuce'
+
+    tennis_scorer.points = [5,5]
+
+    expect(tennis_scorer.score).to eq 'Deuce'
+  end
+
+  it 'can detect advantage' do
+    tennis_scorer.points = [4,3]
+
+    expect(tennis_scorer.score).to eq 'Advantage Player 1'
+
+    tennis_scorer.points = [3,4]
+
+    expect(tennis_scorer.score).to eq 'Advantage Player 2'
   end
 end
