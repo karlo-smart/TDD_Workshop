@@ -1,3 +1,6 @@
+class GameOverError < StandardError
+end
+
 class TennisScorer
   SCORES = { 0 => 0, 1 => 15, 2 => 30, 3 => 40 }
 
@@ -8,6 +11,8 @@ class TennisScorer
   end
 
   def add_point(player)
+    raise GameOverError if winner?
+
     points[player] += 1
   end
 

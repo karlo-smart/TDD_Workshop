@@ -41,6 +41,11 @@ describe TennisScorer do
 
   it 'if the game has finished, you can not add points' do
     tennis_scorer.points = [4,0]
-    expect(tennis_scorer.add_point(0)).to raise GameOverError
+    expect{ tennis_scorer.add_point(0) }.to raise_error(GameOverError)
+  end
+
+  it 'detects and illegal score' do
+    tennis_scorer.points = [4,7]
+    expect{ tennis_scorer.add_point(0) }.to raise_error(IllegalScoreError)
   end
 end
