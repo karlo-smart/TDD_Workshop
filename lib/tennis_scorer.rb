@@ -12,10 +12,14 @@ class TennisScorer
   end
 
   def score
-    if points[0] >= 3 && points[0] == points[1]
-      'Deuce'
-    else
+    if points.min < 3
       points.map { |point| SCORES[point] }
+    elsif points[0] == points[1]
+      'Deuce'
+    elsif points[0] > points[1]
+      'Advantage Player 1'
+    else
+      'Advantage Player 2'
     end
   end
 end
