@@ -1,0 +1,2 @@
+class IllegalScoreError < StandardError
+end
