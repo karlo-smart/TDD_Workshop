@@ -9,7 +9,12 @@ describe TennisScorer do
 
   it 'can increment score for player one' do
     tennis_scorer.add_point(0)
-
     expect(tennis_scorer.score).to eq [15,0]
+
+    tennis_scorer.add_point(0)
+    expect(tennis_scorer.score).to eq [30,0]
+
+    tennis_scorer.add_point(0)
+    expect(tennis_scorer.score).to eq [40,0]
   end
 end
