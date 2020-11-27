@@ -20,9 +20,11 @@ class TennisScorer
   def display_score
     raise IllegalScoreError unless valid_score?
 
-    return "#{leader} wins" if winner?
-
-    ScoreDisplay.new(points).display(leader)
+    if winner?
+      puts "#{leader} wins"
+    else
+      puts ScoreDisplay.new(points).display(leader)
+    end
   end
 
   def winner?

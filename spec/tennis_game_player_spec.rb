@@ -12,7 +12,7 @@ describe TennisGamePlayer do
   context 'when a new game is started' do
 
     it 'creates a new TennisScorer instance' do
-      expect(TennisScorer).to receive(:new)
+      expect(TennisScorer).to receive(:new).and_return(TennisScorer.new)
       subject
     end
   end
