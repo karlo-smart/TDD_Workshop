@@ -3,18 +3,25 @@
 require_relative './tennis_scorer'
 
 class TennisGamePlayer
+
+  attr_reader :scorer
+
   def initialize
-    scorer = TennisScorer.new
+    @scorer = TennisScorer.new
     while !scorer.winner?
       scorer.display_score
-      rand_play = random_player
-      scorer.add_point(rand_play)
+      score_point(random_player)
     end
     scorer.display_score
   end
 
   def random_player
     [0,1].sample
+  end
+
+  def score_point(player)
+    puts "Player #{player + 1} scores a point"
+    scorer.add_point(player)
   end
 end
 
