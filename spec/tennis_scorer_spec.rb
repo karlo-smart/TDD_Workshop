@@ -1,47 +1,76 @@
 require '../lib/tennis_scorer'
 
 describe TennisScorer do
-  let(:tennis_scorer) { TennisScorer.new }
 
-  it 'can increment score for player one' do
-    tennis_scorer.add_point(0)
-    expect(tennis_scorer.display_score).to eq "Fifteen Love"
+  context 'when initialising the scorer without giving a score' do
+    subject { described_class.new }
 
-    tennis_scorer.add_point(0)
-    expect(tennis_scorer.display_score).to eq "Thirty Love"
+    it 'has an initial score of 0,0' do
+      expect(subject.points).to eq [0,0]
+    end
 
-    tennis_scorer.add_point(0)
-    expect(tennis_scorer.display_score).to eq "Forty Love"
+    it 'can increment score for player one' do
+      subject.add_point(0)
+
+      expect(subject.points).to eq [1,0]
+    end
+
+    it 'can increment score for player two' do
+      subject.add_point(1)
+
+      expect(subject.points).to eq [0,1]
+    end
   end
 
-  it 'can detect deuce' do
-    tennis_scorer.points = [3,3]
-    expect(tennis_scorer.display_score).to eq 'Deuce'
+  context 'when initialising the scorer with a score' do
+    subject { described_class.new(points) }
 
-    tennis_scorer.points = [5,5]
-    expect(tennis_scorer.display_score).to eq 'Deuce'
-  end
+    context 'when the score is 4,0' do
+      let(:points) { [4,0] }
 
-  it 'can detect advantage' do
-    tennis_scorer.points = [4,3]
-    expect(tennis_scorer.display_score).to eq 'Advantage Player 1'
+      it 'can detect a winner' do
+        expect(subject.winner?)
+      end
 
-    tennis_scorer.points = [3,4]
-    expect(tennis_scorer.display_score).to eq 'Advantage Player 2'
-  end
+      it 'does not allow further points to be added' do
+        expect{ subject.add_point(0) }.to raise_error(GameOverError)
+      end
+    end
 
-  it 'can detect a winner' do
-    tennis_scorer.points = [4,0]
-    expect(tennis_scorer.display_score).to eq 'Player 1 wins'
-  end
+    context 'when the score is 3,0' do
+      let(:points) { [3,0] }
 
-  it 'if the game has finished, you can not add points' do
-    tennis_scorer.points = [4,0]
-    expect{ tennis_scorer.add_point(0) }.to raise_error(GameOverError)
-  end
+      it "doesn't detect a winner" do
+        expect(!subject.winner?)
+      end
+    end
 
-  it 'detects and illegal score' do
-    tennis_scorer.points = [4,7]
-    expect{ tennis_scorer.add_point(0) }.to raise_error(IllegalScoreError)
+    context 'when the score is 6,4' do
+      let(:points) { [6,4] }
+
+      it 'can detect a winner' do
+        expect(subject.winner?)
+      end
+
+      it 'does not allow further points to be added' do
+        expect{ subject.add_point(0) }.to raise_error(GameOverError)
+      end
+    end
+
+    context 'when the score is 5,4' do
+      let(:points) { [5,4] }
+
+      it "doesn't detect a winner" do
+        expect(!subject.winner?)
+      end
+    end
+
+    context 'when the score is 7,4' do
+      let(:points) { [7,4] }
+
+      it 'detects an illegal score' do
+        expect{ subject.add_point(0) }.to raise_error(IllegalScoreError)
+      end
+    end
   end
 end

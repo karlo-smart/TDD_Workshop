@@ -6,8 +6,8 @@ class TennisScorer
   
   attr_accessor :points
 
-  def initialize
-    @points = [0,0]
+  def initialize(points = [0,0])
+    @points = points
   end
 
   def add_point(player)
