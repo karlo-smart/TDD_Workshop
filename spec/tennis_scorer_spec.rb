@@ -44,12 +44,4 @@ describe TennisScorer do
     tennis_scorer.points = [4,7]
     expect{ tennis_scorer.add_point(0) }.to raise_error(IllegalScoreError)
   end
-
-  it 'returns a score of x all when scores are tied' do
-    tennis_scorer.points = [1,1]
-    expect(tennis_scorer.display_score).to eq 'Fifteen All'
-
-    tennis_scorer.points = [2,2]
-    expect(tennis_scorer.display_score).to eq 'Thirty All'
-  end
 end

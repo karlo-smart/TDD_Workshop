@@ -7,7 +7,7 @@ class ScoreDisplay
     @points = points
   end
 
-  def display(leader)
+  def display(leader = nil)
     if points.min < 3
       basic_score
     elsif points[0] == points[1]
@@ -26,5 +26,4 @@ class ScoreDisplay
       "#{score[0]} #{score[1]}"
     end
   end
-
 end
