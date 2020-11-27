@@ -1,4 +1,4 @@
-#!/Users/david.morton/.rbenv/shims/ruby -w
+#!/usr/bin/env ruby
 
 require_relative './tennis_scorer'
 
